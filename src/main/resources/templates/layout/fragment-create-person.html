@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <div class="newUser_container" th:fragment="newUser (emptyUser, roles)">
+    <div class="newUser_container" th:fragment="newPerson (emptyPerson, roles)">
         <div class="title_container p-3 bg-body-secondary">
             <h5 class="h5 m-0">Add new user</h5>
         </div>
@@ -16,49 +16,47 @@
             <div class="row align-items-start">
                 <div class="col"></div>
                 <div class="col-4">
-                    <form class="form" th:action="@{/admin/user/new}" th:method="POST" th:object="${emptyUser}">
+                    <form class="form" th:action="@{/admin/person/new}" th:method="POST" th:object="${emptyPerson}">
                         <div class="mb-1">
                             <label for="newFirstNameInput" class="form-label"><b>First name</b></label>
                             <input th:name="firstName" type="text" class="form-control" id="newFirstNameInput"
-                                th:value="${emptyUser.firstName}">
+                                th:value="${emptyPerson.firstName}">
                         </div>
 
                         <div class="mb-1">
                             <label for="newLastNameInput" class="form-label"><b>Last name</b></label>
                             <input th:name="lastName" type="text" class="form-control" id="newLastNameInput"
-                                th:value="${emptyUser.lastName}">
+                                th:value="${emptyPerson.lastName}">
                         </div>
 
                         <div class="mb-1">
                             <label for="newAgeInput" class="form-label"><b>Age</b></label>
                             <input th:name="age" type="number" class="form-control" id="newAgeInput"
-                                th:value="${emptyUser.age}">
+                                th:value="${emptyPerson.age}">
                         </div>
 
                         <div class="mb-1">
                             <label for="newEmailInput" class="form-label"><b>Email</b></label>
                             <input th:name="email" type="email" class="form-control" id="newEmailInput"
-                                aria-describedby="emailHelp" th:value="${emptyUser.email}">
+                                aria-describedby="emailHelp" th:value="${emptyPerson.email}">
                         </div>
 
                         <div class="mb-1">
                             <label for="newPasswordInput" class="form-label"><b>Password</b></label>
                             <input th:name="password" type="password" class="form-control" id="newPasswordInput"
-                                th:value="${emptyUser.password}">
+                                th:value="${emptyPerson.password}">
                         </div>
 
                         <div class="mb-2">
                             <label for="newRoleSelect" class="form-label"><b>Role</b></label>
-                            <select th:name="roles" class="form-control" size="2" id="newRoleSelect"
-                                th:value="${emptyUser.roles}" multiple>
-                                <div th:each="role : ${roles}">
-                                    <option th:selected="${emptyUser.roles.contains(role)}" th:name="role"
-                                        th:value="${role}" th:text="${role.getRole()}"></option>
-                                </div>
+                            <select th:name="roles" class="form-control" size="2" id="newRoleSelect" multiple>
+                                <th:block th:each="role : ${roles}">
+                                    <option th:value="${role.id}" th:text="${role.roleName.name}"></option>
+                                </th:block>
                             </select>
                         </div>
 
-                        <button type="submit" class="btn btn-success">Add new user</button>
+                        <button type="submit" class="btn btn-success">Add new person</button>
                     </form>
 
                 </div>

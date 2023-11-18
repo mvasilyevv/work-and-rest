@@ -11,7 +11,7 @@
 
 <body>
   <header>
-    <div th:replace="layout/fragment_navbar.html :: navbar (${person})"></div>
+    <div th:replace="layout/fragment_navbar.html :: navbar (${currentPerson})"></div>
   </header>
 
   <section>
@@ -21,14 +21,14 @@
           <div class="mt-4">
             <div class="list-group" id="list-tab" role="tablist">
               <a class="list-group-item list-group-item-action active" id="person-info-tab" data-bs-toggle="list"
-                href="#person-info" role="tab" aria-controls="person-info">User</a>
+                href="#person-info" role="tab" aria-controls="person-info">Person</a>
             </div>
           </div>
         </div>
 
         <div class="col bg-light px-4">
           <div class="mt-4">
-            <div th:replace="layout/fragment_person-info.html :: person-info (${person})"></div>
+            <div th:replace="layout/fragment_person-info.html :: personInfo (${currentPerson})"></div>
           </div>
         </div>
       </div>

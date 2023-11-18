@@ -12,8 +12,8 @@
     <nav class="navbar bg-dark" data-bs-theme="dark">
       <div class="container-fluid px-4">
         <div>
-          <span class="navbar-brand h1 me-1" th:text="${person.getEmail()}"></span>
-          <span class="navbar-text" th:text="${'with role: ' + person.getRoles()}"></span>
+          <span class="navbar-brand h1 me-1" th:text="${person.email}"></span>
+          <span class="navbar-text" th:text="${'with role: ' + #strings.listJoin(person.roles.![roleName], ', ')}"></span>
         </div>
         <form action="/logout">
           <button class="btn btn-outline-secondary" type="submit">Logout</button>

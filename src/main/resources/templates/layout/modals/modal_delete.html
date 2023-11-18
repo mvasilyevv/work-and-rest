@@ -10,60 +10,60 @@
 </head>
 
 <body>
-  <div class="deleteModal_container" th:fragment="deleteModal (user)">
-    <div class="modal fade" th:id="${'deleteUserModal' + user.getId()}" tabindex="-1" aria-labelledby="deleteModelLabel"
+  <div class="deleteModal_container" th:fragment="deleteModal (person)">
+    <div class="modal fade" th:id="${'deleteUserModal' + person.id}" tabindex="-1" aria-labelledby="deleteModelLabel"
       aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content text-center">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="deleteModalLabel">Delete user</h1>
+            <h1 class="modal-title fs-5" id="deleteModalLabel">Delete person</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form th:action="@{/admin/user/{id}/delete(id=${user.getId()})}" th:method="DELETE" class="form">
+            <form th:action="@{/admin/person/{id}/delete(id=${person.id})}" th:method="DELETE" class="form">
               <div class="mb-1">
-                <label th:for="${'deletedIDInput' + user.id}" class="form-label"><b>ID</b></label>
-                <input type="text" class="form-control" th:id="${'deletedIDInput' + user.id}" disabled readonly
-                  th:placeholder="${user.id}">
+                <label th:for="${'deletedIDInput' + person.id}" class="form-label"><b>ID</b></label>
+                <input type="text" class="form-control" th:id="${'deletedIDInput' + person.id}" disabled readonly
+                  th:placeholder="${person.id}">
               </div>
 
               <div class="mb-1">
-                <label th:for="${'deletedFirstNameInput' + user.id}" class="form-label"><b>First name</b></label>
-                <input type="text" class="form-control" th:id="${'deletedFirstNameInput' + user.id}" disabled readonly
-                  th:placeholder="${user.firstName}">
+                <label th:for="${'deletedFirstNameInput' + person.id}" class="form-label"><b>First name</b></label>
+                <input type="text" class="form-control" th:id="${'deletedFirstNameInput' + person.id}" disabled readonly
+                  th:placeholder="${person.firstName}">
               </div>
 
               <div class="mb-1">
-                <label th:for="${'deletedLastNameInput' + user.id}" class="form-label">
+                <label th:for="${'deletedLastNameInput' + person.id}" class="form-label">
                   <b>Last name</b>
                 </label>
-                <input type="text" class="form-control" th:id="${'deletedLastNameInput' + user.id}" disabled readonly
-                  th:placeholder="${user.lastName}">
+                <input type="text" class="form-control" th:id="${'deletedLastNameInput' + person.id}" disabled readonly
+                  th:placeholder="${person.lastName}">
               </div>
 
               <div class="mb-1">
-                <label th:for="${'deletedAgeInput' + user.id}" class="form-label">
+                <label th:for="${'deletedAgeInput' + person.id}" class="form-label">
                   <b>Age</b>
                 </label>
-                <input type="number" class="form-control" th:id="${'deletedAgeInput' + user.id}" disabled readonly
-                  th:placeholder="${user.age}">
+                <input type="number" class="form-control" th:id="${'deletedAgeInput' + person.id}" disabled readonly
+                  th:placeholder="${person.age}">
               </div>
 
               <div class="mb-1">
-                <label th:for="${'deletedEmailInput' + user.id}" class="form-label">
+                <label th:for="${'deletedEmailInput' + person.id}" class="form-label">
                   <b>Email</b>
                 </label>
-                <input type="email" class="form-control" th:id="${'deletedEmailInput' + user.id}"
-                  aria-describedby="emailHelp" disabled readonly th:placeholder="${user.email}">
+                <input type="email" class="form-control" th:id="${'deletedEmailInput' + person.id}"
+                  aria-describedby="emailHelp" disabled readonly th:placeholder="${person.email}">
               </div>
 
               <div class="mb-2">
-                <label th:for="${'deletedRoleSelect' + user.id}" class="form-label">
+                <label th:for="${'deletedRoleSelect' + person.id}" class="form-label">
                   <b>Role</b>
                 </label>
-                <select class="form-select" size="3" th:id="${'deletedRoleSelect' + user.id}" disabled>
-                  <div th:each="role : ${user.getRoles()}">
-                    <option th:value="${role.getRole()}" th:text="${role.getRole()}"></option>
+                <select class="form-select" size="3" th:id="${'deletedRoleSelect' + person.id}" disabled>
+                  <div th:each="role : ${person.roles}">
+                    <option th:value="${role.roleName}" th:text="${role.roleName.name}"></option>
                   </div>
                 </select>
               </div>

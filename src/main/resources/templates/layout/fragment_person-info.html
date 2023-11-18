@@ -8,11 +8,11 @@
 </head>
 
 <body>
-  <div class="userInfo_container" th:fragment="userInfo (user)">
-    <h1 class="h1">User information-page</h1>
+  <div class="userInfo_container" th:fragment="personInfo (person)">
+    <h1 class="h1">Person information-page</h1>
     <div class="table_container mt-3 border ">
       <div class="title_container p-3 bg-body-secondary">
-        <h5 class="h5 m-0">About user</h5>
+        <h5 class="h5 m-0">About Person</h5>
       </div>
       <div class="table_container p-4">
         <table class="table table-striped">
@@ -28,12 +28,12 @@
           </thead>
           <tbody>
             <tr>
-              <th scope="row" th:text="${user.getId()}"></th>
-              <td th:text="${user.getFirstName()}"></td>
-              <td th:text="${user.getLastName()}"></td>
-              <td th:text="${user.getAge()}"></td>
-              <td th:text="${user.getEmail()}"></td>
-              <td th:text="${user.roles}"></td>
+              <th scope="row" th:text="${person.id}"></th>
+              <td th:text="${person.firstName}"></td>
+              <td th:text="${person.lastName}"></td>
+              <td th:text="${person.age}"></td>
+              <td th:text="${person.email}"></td>
+              <td th:text="${#strings.listJoin(person.roles.![roleName], ', ')}"></td>
             </tr>
           </tbody>
         </table>

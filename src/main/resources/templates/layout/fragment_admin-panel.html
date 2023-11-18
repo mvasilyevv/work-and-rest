@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <div class="adminPanel_container" th:fragment="adminPanel(users, emptyUser, person, roles)">
+    <div class="adminPanel_container" th:fragment="adminPanel(persons, emptyPerson, currentPerson, roles)">
         <div id="nav-tabContent" class="container tab-content p-0 m-0">
             <div class="adminPanel_container tab-pane fade show active" id="admin-panel" role="tabpanel"
                 aria-labelledby="admin-panel-tab">
@@ -21,24 +21,24 @@
                         <li class="nav-item">
                             <button class="nav-link active" id="usersList-tab" data-bs-toggle="tab"
                                 data-bs-target="#usersList" type="button" role="tab" aria-controls="usersList"
-                                aria-selected="true">Users table</button>
+                                aria-selected="true">Person table</button>
                         </li>
 
                         <li class="nav-item">
                             <button class="nav-link" id="newUser-tab" data-bs-toggle="tab" data-bs-target="#newUser"
-                                type="button" role="tab" aria-controls="newUser" aria-selected="true">New user</button>
+                                type="button" role="tab" aria-controls="newUser" aria-selected="true">New person</button>
                         </li>
 
                     </ul>
                     <div class="container p-0 tab-content border">
                         <div class="tab-pane fade show active" id="usersList" role="tabpanel"
                             aria-labelledby="newUser-tab" tabindex="0">
-                            <div th:replace="layout/fragment_users-list.html :: usersList (${users}, ${roles})"></div>
+                            <div th:replace="layout/fragment_person-list.html :: personsList (${persons}, ${roles})"></div>
                         </div>
 
                         <div class="tab-pane fade" id="newUser" role="tabpanel" aria-labelledby="newUser-tab"
                             tabindex="0">
-                            <div th:replace="layout/fragment-create-user.html :: newUser (${emptyUser}, ${roles})">
+                            <div th:replace="layout/fragment-create-person.html :: newPerson (${emptyPerson}, ${roles})">
                             </div>
                         </div>
                     </div>
@@ -46,7 +46,7 @@
             </div>
             <div class="userInfo_container tab-pane fade" id="user-info" role="tabpanel"
                 aria-labelledby="user-info-tab">
-                <div th:replace="layout/fragment_user-info.html :: userInfo (${person})"></div>
+                <div th:replace="layout/fragment_person-info.html :: personInfo (${currentPerson})"></div>
             </div>
         </div>
     </div>
