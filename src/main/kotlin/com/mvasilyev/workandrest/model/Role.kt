@@ -11,7 +11,7 @@ data class Role(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "role_id")
-    val id: Long = 0,
+    val id: Long? = null,
 
     @Enumerated(EnumType.STRING)
     @Column(length = 10)

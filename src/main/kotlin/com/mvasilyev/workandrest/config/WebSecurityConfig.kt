@@ -1,6 +1,9 @@
 package com.mvasilyev.workandrest.config
 
 import com.mvasilyev.workandrest.model.RoleName
+import com.mvasilyev.workandrest.security.PersonDetails
+import com.mvasilyev.workandrest.service.person.PersonService
+import com.mvasilyev.workandrest.service.person.impl.PersonDetailsService
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Lazy
@@ -16,8 +19,8 @@ import org.springframework.security.crypto.password.PasswordEncoder
 @Configuration
 @EnableWebSecurity
 class WebSecurityConfig(
-    val successPersonHandler: SuccessPersonHandler,
-    @Lazy val userDetailsService: UserDetailsService
+    private val successPersonHandler: SuccessPersonHandler,
+    private val personDetailsService: PersonDetailsService
 ): WebSecurityConfigurerAdapter() {
 
     @Throws(Exception::class)
@@ -48,7 +51,7 @@ class WebSecurityConfig(
 
     @Throws(Exception::class)
     override fun configure(auth: AuthenticationManagerBuilder) {
-        auth.userDetailsService(userDetailsService).passwordEncoder(getPasswordEncoder())
+        auth.userDetailsService(personDetailsService).passwordEncoder(getPasswordEncoder())
     }
 
     @Bean

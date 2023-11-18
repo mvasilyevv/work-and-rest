@@ -12,8 +12,8 @@ class DataInitialization(
     private val personServiceImpl: PersonServiceImpl,
     private val roleRepository: RoleRepository
 ) {
-    fun addPersons(count: Int) {
-        val role = Role(roleName = RoleName.ROLE_USER)
+    fun addPersonsWithRole(count: Int = 1, roleName: RoleName) {
+        val role = Role(roleName = roleName)
         roleRepository.save(role)
         for(i in 1..count) {
             val parameters = Person.Parameters(
@@ -21,15 +21,18 @@ class DataInitialization(
                 (60 + i).toDouble()
             )
             val person = Person(
-                i.toLong(),
                 firstName = "FirstName${i}",
                 lastName = "LastName${i}",
                 password = "password${i}",
-               age =  (30 + i),
-               email =  "email@${i}",
-               roles =  setOf(role),
-              parameters = parameters
+                age =  (30 + i),
+                email =  "email@${i}",
+                roles =  setOf(role),
+                parameters = parameters
             )
+            if (roleName == RoleName.ROLE_ADMIN) {
+                person.email = "admin"
+                person.password = "admin"
+            }
             personServiceImpl.save(person)
         }
     }

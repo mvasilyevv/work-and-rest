@@ -19,8 +19,12 @@ class PersonServiceImpl(
         return personRepository.findById(id).orElse(null)
     }
 
+    override fun findByEmail(email: String): Person? {
+       return personRepository.findByEmail(email)
+    }
+
     override fun save(person: Person) {
-//        person.password = passwordEncoder.encode(person.password)
+        person.password = passwordEncoder.encode(person.password)
         personRepository.save(person)
     }
 

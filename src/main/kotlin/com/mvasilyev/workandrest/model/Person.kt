@@ -1,5 +1,6 @@
 package com.mvasilyev.workandrest.model
 
+import lombok.NoArgsConstructor
 import javax.persistence.*
 
 @Entity
@@ -8,26 +9,26 @@ data class Person(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    val id: Long = 0,
+    val id: Long? = null,
 
     @Column(name = "first_name")
-    var firstName: String,
+    var firstName: String = "",
 
     @Column(name = "last_name")
-    var lastName: String,
+    var lastName: String = "",
 
     @Column
-    var password: String,
+    var password: String = "",
 
     @Column
-    var age: Int,
+    var age: Int = 0,
 
     @Column(unique = true, length = 30)
-    var email: String,
+    var email: String = "",
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = [CascadeType.PERSIST])
+    @ManyToMany(fetch = FetchType.EAGER, cascade = [CascadeType.MERGE])
     @JoinTable(
-        name = "User_Role",
+        name = "Person_Role",
         joinColumns = [JoinColumn(name = "user_id")],
         inverseJoinColumns = [JoinColumn(name = "role_id")]
     )

@@ -19,7 +19,7 @@ class SuccessPersonHandler: AuthenticationSuccessHandler {
         if (roles.contains(RoleName.ROLE_ADMIN.name)) {
             response.sendRedirect("/admin")
         } else {
-            response.sendRedirect("/user")
+            response.sendRedirect("/person")
         }
     }
 
