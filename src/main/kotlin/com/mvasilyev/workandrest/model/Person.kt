@@ -1,6 +1,5 @@
 package com.mvasilyev.workandrest.model
 
-import lombok.NoArgsConstructor
 import javax.persistence.*
 
 @Entity
@@ -29,7 +28,7 @@ data class Person(
     @ManyToMany(fetch = FetchType.EAGER, cascade = [CascadeType.MERGE])
     @JoinTable(
         name = "Person_Role",
-        joinColumns = [JoinColumn(name = "user_id")],
+        joinColumns = [JoinColumn(name = "person_id")],
         inverseJoinColumns = [JoinColumn(name = "role_id")]
     )
     var roles: Set<Role> = HashSet(),
